@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 const MONGODB = process.env.MONGODB;
 
 mongoose
-  .connect(MONGODB_URI, {
+  .connect(MONGODB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
