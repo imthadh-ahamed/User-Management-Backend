@@ -8,6 +8,10 @@ dotenv.config();
 const PORT = process.env.PORT || 3000;
 const MONGODB = process.env.MONGODB;
 
+app.get('/', (req, res) => {
+  res.send("Hello World!");
+});
+
 mongoose
   .connect(MONGODB, {
     useNewUrlParser: true,

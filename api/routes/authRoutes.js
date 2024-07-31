@@ -1,4 +1,5 @@
 import express from "express";
+import multer from "multer";
 import {
   register,
   login,
@@ -9,8 +10,20 @@ import { check } from "express-validator";
 
 const router = express.Router();
 
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/");
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
+});
+
+const upload = multer({ storage: storage });
+
 router.post(
   "/register",
+  upload.single("picture"),
   [
     check("firstName").notEmpty().withMessage("First name is required"),
     check("lastName").notEmpty().withMessage("Last name is required"),
